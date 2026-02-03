@@ -2,6 +2,7 @@
 
 import { Play, ChevronDown } from "lucide-react"
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 export function HeroSection() {
   return (
@@ -62,38 +63,61 @@ export function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto mt-32">
+      <motion.div 
+        className="relative z-10 text-center px-6 max-w-4xl mx-auto mt-32"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+      >
         {/* Subtitle */}
-        <div className="mb-6">
+        <motion.div 
+          className="mb-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+        >
           <span className="inline-block px-4 py-1 text-xs font-mono tracking-[0.3em] text-cyan-glow/70 border border-cyan-glow/30 rounded-full">
             ESTABLISHED 2087 • TEMPORAL LICENSE #0001
           </span>
-        </div>
+        </motion.div>
 
         {/* Main headline with glitch effect */}
-        <h1 
+        <motion.h1 
           className="font-serif text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-6 glitch-text text-foreground"
           data-text="The Future Has a Past."
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
         >
           The Future Has a Past.
-        </h1>
+        </motion.h1>
 
         {/* Subheadline */}
-        <p className="font-sans text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+        <motion.p 
+          className="font-sans text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
+        >
           Experience history firsthand. Walk the streets of ancient Rome. 
           Witness the Renaissance. Touch the untouched.
-        </p>
+        </motion.p>
 
         {/* CTA buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <motion.div 
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.1 }}
+        >
           <a href="#destinations" className="px-8 py-4 bg-cyan-glow text-obsidian font-sans font-medium rounded-full hover:shadow-[0_0_30px_oklch(0.75_0.18_195_/_0.5)] transition-all">
             Explore Destinations
           </a>
           <a href="#about" className="px-8 py-4 bg-transparent border border-foreground/30 text-foreground font-sans rounded-full hover:border-cyan-glow/50 hover:text-cyan-glow transition-all">
             Learn More
           </a>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 float-animation">

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from "framer-motion"
 import { Check, ChevronLeft, ChevronRight, Users, Calendar, Shield, Languages, Shirt } from 'lucide-react';
 
 const timelineEras = [
@@ -178,6 +179,72 @@ export function BookingInterface() {
                         </div>
                     </div>
                 </div>
+            {/* Timeline track */}
+            <div className="relative max-w-sm md:max-w-2xl lg:max-w-4xl mx-auto">
+              {/* Track line */}
+              <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-glow/30 to-transparent -translate-y-1/2" />
+              
+              {/* Era markers */}
+              <div className="relative flex justify-center gap-8 sm:gap-16 md:gap-24 lg:gap-40 overflow-hidden py-3 md:py-4 lg:py-6">
+                <div 
+                  className="flex gap-8 sm:gap-16 md:gap-24 lg:gap-40 transition-transform duration-500 ease-out"
+                  style={{ 
+                    transform: `translateX(-${timelineOffset * (100 / visibleEras)}%)`,
+                  }}
+                >
+                  {timelineEras.map((era, index) => (
+                    <button
+                      key={era.year}
+                      onClick={() => era.available && setSelectedEra(index)}
+                      disabled={!era.available}
+                      className={`flex-shrink-0 flex flex-col items-center gap-2 md:gap-3 lg:gap-4 transition-all group min-w-[80px] md:min-w-[120px] lg:min-w-[140px]`}
+                    >
+                      {/* Marker */}
+                      <div className={`relative w-3 h-3 md:w-4 md:h-4 lg:w-6 lg:h-6 rounded-full border-2 transition-all ${
+                        selectedEra === index 
+                          ? "border-cyan-glow bg-cyan-glow shadow-[0_0_20px_oklch(0.75_0.18_195_/_0.5)]" 
+                          : era.available
+                          ? "border-muted-foreground/50 bg-background hover:border-cyan-glow/50"
+                          : "border-muted-foreground/20 bg-background/50"
+                      }`}>
+                        {selectedEra === index && (
+                          <div className="absolute inset-0 rounded-full bg-cyan-glow animate-ping opacity-50" />
+                        )}
+                      </div>
+                      
+                      {/* Label */}
+                      <div className="text-center">
+                        <p className={`font-mono text-xs md:text-sm lg:text-lg transition-colors ${
+                          selectedEra === index 
+                            ? "text-cyan-glow font-medium" 
+                            : era.available 
+                            ? "text-foreground group-hover:text-cyan-glow" 
+                            : "text-muted-foreground/40"
+                        }`}>
+                          {era.year}
+                        </p>
+                        <p className={`text-[10px] md:text-xs lg:text-sm mt-0.5 md:mt-1 transition-colors ${
+                          selectedEra === index 
+                            ? "text-cyan-glow/70" 
+                            : era.available 
+                            ? "text-muted-foreground" 
+                            : "text-muted-foreground/30"
+                        }`}>
+                          {era.label}
+                        </p>
+                        {!era.available && (
+                          <span className="text-[10px] font-mono text-muted-foreground/40 mt-1 block">
+                            COMING SOON
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
                 {/* Configuration grid */}
                 <div className='grid md:grid-cols-2 gap-6 mb-8'>
@@ -188,19 +255,23 @@ export function BookingInterface() {
                             <h3 className='font-mono text-sm text-cyan-glow tracking-wider'>TRAVELERS</h3>
                         </div>
                         <div className='flex items-center gap-4'>
-                            <button
+                            <motion.button
                                 onClick={() => setTravelers(Math.max(1, travelers - 1))}
                                 className='w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-cyan-glow/50 transition-all text-foreground'
-                            >
+                              whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
                                 -
-                            </button>
+                            </motion.button>
                             <span className='font-serif text-3xl text-foreground w-12 text-center'>{travelers}</span>
-                            <button
+                            <motion.button
                                 onClick={() => setTravelers(Math.min(6, travelers + 1))}
                                 className='w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-cyan-glow/50 transition-all text-foreground'
-                            >
+                              whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
                                 +
-                            </button>
+                            </motion.button>
                             <span className='text-sm text-muted-foreground ml-2'>
                                 {travelers === 1 ? 'Solo expedition' : `Group of ${travelers}`}
                             </span>
@@ -226,8 +297,8 @@ export function BookingInterface() {
                 <div className='mb-8'>
                     <h3 className='font-mono text-sm text-cyan-glow tracking-wider mb-4'>EXPEDITION ADD-ONS</h3>
                     <div className='grid md:grid-cols-3 gap-4'>
-                        {addOns.map((addon) => (
-                            <button
+                        {addOns.map((addon, index) => (
+                            <motion.button
                                 key={addon.id}
                                 onClick={() => toggleAddOn(addon.id)}
                                 className={`glass rounded-xl p-5 text-left transition-all ${
@@ -235,7 +306,13 @@ export function BookingInterface() {
                                         ? 'border-cyan-glow/50 bg-cyan-glow/5'
                                         : 'hover:border-cyan-glow/30'
                                 }`}
-                            >
+                              initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
                                 <div className='flex items-start justify-between mb-3'>
                                     <addon.icon
                                         className={`w-5 h-5 ${
@@ -261,7 +338,7 @@ export function BookingInterface() {
                                     {addon.description}
                                 </p>
                                 <p className='font-mono text-sm text-cyan-glow'>{addon.price}</p>
-                            </button>
+                            </motion.button>
                         ))}
                     </div>
                 </div>
@@ -277,9 +354,13 @@ export function BookingInterface() {
                                 {selectedAddOns.length} add-on{selectedAddOns.length !== 1 ? 's' : ''}
                             </p>
                         </div>
-                        <button className='px-10 py-4 bg-cyan-glow text-obsidian font-sans font-medium rounded-full hover:shadow-[0_0_40px_oklch(0.75_0.18_195_/_0.5)] transition-all text-lg'>
+                        <motion.button 
+              className='px-10 py-4 bg-cyan-glow text-obsidian font-sans font-medium rounded-full hover:shadow-[0_0_40px_oklch(0.75_0.18_195_/_0.5)] transition-all text-lg'
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
                             Initialize Booking
-                        </button>
+                        </motion.button>
                     </div>
                 </div>
             </div>

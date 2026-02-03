@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Image from "next/image"
+import { motion } from "framer-motion"
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 const destinations = [
@@ -120,19 +121,22 @@ export function DestinationsGallery() {
                 </div>
 
                 {/* Horizontal scroll gallery */}
-                <div
-                    ref={scrollRef}
-                    className='flex gap-6 overflow-x-auto px-6 pb-8 snap-x snap-mandatory scrollbar-hide'
-                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                >
-                    {/* Spacer for centering first card */}
-                    <div className='flex-shrink-0 w-[calc((100vw-1152px)/2)] max-w-[200px] hidden lg:block' />
-
-                    {destinations.map((destination, index) => (
-                        <div
+                <div className='flex justify-center'>
+                    <div
+                        ref={scrollRef}
+                        className='flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide'
+                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    >
+                        {destinations.map((destination, index) => (
+                        <motion.div
                             key={destination.id}
                             className='flex-shrink-0 w-[350px] md:w-[400px] snap-start group'
                             onMouseEnter={() => setActiveIndex(index)}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            whileHover={{ y: -8 }}
                         >
                             <div
                                 className={`relative h-[520px] rounded-3xl overflow-hidden glass hover:border-cyan-glow/30 transition-all duration-500`}
@@ -246,11 +250,9 @@ export function DestinationsGallery() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-
-                    {/* Spacer for centering last card */}
-                    <div className='flex-shrink-0 w-[calc((100vw-1152px)/2)] max-w-[200px] hidden lg:block' />
+                    </div>
                 </div>
 
                 {/* Pagination dots */}
