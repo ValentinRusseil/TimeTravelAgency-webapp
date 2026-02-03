@@ -4,13 +4,9 @@ import { useState } from "react"
 import { Check, ChevronLeft, ChevronRight, Users, Calendar, Shield, Languages, Shirt } from "lucide-react"
 
 const timelineEras = [
-  { year: "2500 BCE", label: "Ancient Egypt", available: true },
-  { year: "44 BCE", label: "Roman Republic", available: true },
+  { year: "65M BC", label: "Cretaceous", available: true },
   { year: "1504", label: "Renaissance", available: true },
-  { year: "1789", label: "French Revolution", available: false },
   { year: "1889", label: "Belle Époque", available: true },
-  { year: "1920", label: "Roaring Twenties", available: true },
-  { year: "1969", label: "Moon Landing", available: false },
 ]
 
 const addOns = [
@@ -38,7 +34,7 @@ const addOns = [
 ]
 
 export function BookingInterface() {
-  const [selectedEra, setSelectedEra] = useState(2) // Florence 1504
+  const [selectedEra, setSelectedEra] = useState(1) // Renaissance
   const [travelers, setTravelers] = useState(1)
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>(["insurance"])
   const [timelineOffset, setTimelineOffset] = useState(0)
@@ -53,6 +49,17 @@ export function BookingInterface() {
 
   const visibleEras = 5
   const maxOffset = Math.max(0, timelineEras.length - visibleEras)
+
+  // Calculate total price
+  const totalPrice = 78000 * travelers + selectedAddOns.reduce((sum, id) => {
+    const addon = addOns.find(a => a.id === id)
+    return sum + (addon ? parseInt(addon.price.replace(/\D/g, "")) : 0)
+  }, 0)
+
+  // Format number with commas
+  const formatPrice = (price: number) => {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+  }
 
   return (
     <section id="booking" className="relative py-32 px-6">
@@ -248,10 +255,7 @@ export function BookingInterface() {
             <div>
               <p className="text-sm text-muted-foreground mb-1">Estimated Total</p>
               <p className="font-serif text-4xl text-foreground">
-                ${(78000 * travelers + selectedAddOns.reduce((sum, id) => {
-                  const addon = addOns.find(a => a.id === id)
-                  return sum + (addon ? parseInt(addon.price.replace(/\D/g, "")) : 0)
-                }, 0)).toLocaleString()}
+                ${formatPrice(totalPrice)}
               </p>
               <p className="text-xs text-muted-foreground mt-1">
                 {timelineEras[selectedEra]?.label} • {travelers} traveler{travelers > 1 ? "s" : ""} • {selectedAddOns.length} add-on{selectedAddOns.length !== 1 ? "s" : ""}
