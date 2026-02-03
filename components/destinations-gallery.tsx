@@ -1,74 +1,75 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import Image from "next/image"
 import { ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
 
 const destinations = [
-    {
-        id: 'paris-1889',
-        title: 'Paris 1889',
-        subtitle: 'Belle Époque',
-        description:
-            "Witness the grand unveiling of the Eiffel Tower during the World's Fair. Stroll along gaslit boulevards as artists and dreamers forge a new artistic movement.",
-        era: '19th Century',
-        duration: '3-7 Days',
-        difficulty: 'Beginner',
-        price: 'From $45,000',
-        theme: 'belle-epoque',
-        gradient: 'from-amber-900/40 via-orange-800/30 to-rose-900/40',
-        accentColor: 'oklch(0.75 0.15 60)',
-        icon: (
-            <svg className='w-12 h-12' viewBox='0 0 48 48' fill='none' stroke='currentColor' strokeWidth='1.5'>
-                <path d='M24 4L24 44M24 4L12 20M24 4L36 20M12 20L12 44M36 20L36 44M8 44H40M16 28H32M18 36H30' />
-            </svg>
-        ),
-    },
-    {
-        id: 'cretaceous',
-        title: 'Cretaceous',
-        subtitle: 'Age of Giants',
-        description:
-            'Journey 66 million years into the past. Observe the magnificent dinosaurs in their natural habitat from the safety of our quantum-shielded observation domes.',
-        era: 'Mesozoic Era',
-        duration: '1-3 Days',
-        difficulty: 'Advanced',
-        price: 'From $125,000',
-        theme: 'prehistoric',
-        gradient: 'from-emerald-900/40 via-green-800/30 to-teal-900/40',
-        accentColor: 'oklch(0.65 0.15 160)',
-        icon: (
-            <svg className='w-12 h-12' viewBox='0 0 48 48' fill='none' stroke='currentColor' strokeWidth='1.5'>
-                <path d='M8 32C8 32 12 28 16 28C20 28 24 32 24 32C24 32 28 28 32 28C36 28 40 32 40 32' />
-                <path d='M10 36L14 28L18 36' />
-                <path d='M30 36L34 28L38 36' />
-                <ellipse cx='24' cy='16' rx='8' ry='6' />
-                <path d='M20 14L18 10M28 14L30 10M22 18L26 18' />
-            </svg>
-        ),
-    },
-    {
-        id: 'florence-1504',
-        title: 'Florence 1504',
-        subtitle: 'High Renaissance',
-        description:
-            "Stand in Michelangelo's workshop as he completes David. Attend private gatherings where Da Vinci unveils his latest inventions to the Medici court.",
-        era: '16th Century',
-        duration: '5-14 Days',
-        difficulty: 'Intermediate',
-        price: 'From $78,000',
-        theme: 'renaissance',
-        gradient: 'from-stone-800/40 via-amber-900/30 to-red-900/40',
-        accentColor: 'oklch(0.70 0.12 45)',
-        icon: (
-            <svg className='w-12 h-12' viewBox='0 0 48 48' fill='none' stroke='currentColor' strokeWidth='1.5'>
-                <circle cx='24' cy='18' r='10' />
-                <path d='M18 16L20 14M28 14L30 16M22 22C22 22 24 24 26 22' />
-                <path d='M14 28L24 44L34 28' />
-                <path d='M18 32L24 38L30 32' />
-            </svg>
-        ),
-    },
-];
+  {
+    id: "paris-1889",
+    title: "Paris 1889",
+    subtitle: "Belle Époque",
+    description: "Witness the grand unveiling of the Eiffel Tower during the World's Fair. Stroll along gaslit boulevards as artists and dreamers forge a new artistic movement.",
+    era: "19th Century",
+    duration: "3-7 Days",
+    difficulty: "Beginner",
+    price: "From $45,000",
+    theme: "belle-epoque",
+    gradient: "from-amber-900/40 via-orange-800/30 to-rose-900/40",
+    accentColor: "oklch(0.75 0.15 60)",
+    image: "/paris-1_1.png",
+    icon: (
+      <svg className="w-12 h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M24 4L24 44M24 4L12 20M24 4L36 20M12 20L12 44M36 20L36 44M8 44H40M16 28H32M18 36H30" />
+      </svg>
+    ),
+  },
+  {
+    id: "cretaceous",
+    title: "Cretaceous",
+    subtitle: "Age of Giants",
+    description: "Journey 66 million years into the past. Observe the magnificent dinosaurs in their natural habitat from the safety of our quantum-shielded observation domes.",
+    era: "Mesozoic Era",
+    duration: "1-3 Days",
+    difficulty: "Advanced",
+    price: "From $125,000",
+    theme: "prehistoric",
+    gradient: "from-emerald-900/40 via-green-800/30 to-teal-900/40",
+    accentColor: "oklch(0.65 0.15 160)",
+    image: "/dinausaure-16_9.png",
+    icon: (
+      <svg className="w-12 h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <path d="M8 32C8 32 12 28 16 28C20 28 24 32 24 32C24 32 28 28 32 28C36 28 40 32 40 32" />
+        <path d="M10 36L14 28L18 36" />
+        <path d="M30 36L34 28L38 36" />
+        <ellipse cx="24" cy="16" rx="8" ry="6" />
+        <path d="M20 14L18 10M28 14L30 10M22 18L26 18" />
+      </svg>
+    ),
+  },
+  {
+    id: "florence-1504",
+    title: "Florence 1504",
+    subtitle: "High Renaissance",
+    description: "Stand in Michelangelo's workshop as he completes David. Attend private gatherings where Da Vinci unveils his latest inventions to the Medici court.",
+    era: "16th Century",
+    duration: "5-14 Days",
+    difficulty: "Intermediate",
+    price: "From $78,000",
+    theme: "renaissance",
+    gradient: "from-stone-800/40 via-amber-900/30 to-red-900/40",
+    accentColor: "oklch(0.70 0.12 45)",
+    image: "/florence9-16.png",
+    icon: (
+      <svg className="w-12 h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <circle cx="24" cy="18" r="10" />
+        <path d="M18 16L20 14M28 14L30 16M22 22C22 22 24 24 26 22" />
+        <path d="M14 28L24 44L34 28" />
+        <path d="M18 32L24 38L30 32" />
+      </svg>
+    ),
+  },
+]
 
 export function DestinationsGallery() {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -136,7 +137,19 @@ export function DestinationsGallery() {
                             <div
                                 className={`relative h-[520px] rounded-3xl overflow-hidden glass hover:border-cyan-glow/30 transition-all duration-500`}
                             >
-                                {/* Gradient background */}
+                                {/* Background Image */}
+                {destination.image && (
+                  <Image
+                    src={destination.image}
+                    alt={destination.title}
+                    fill
+                    className="object-cover opacity-30 group-hover:opacity-40 transition-opacity duration-500"
+                    loading="lazy"
+                    sizes="(max-width: 768px) 350px, 400px"
+                  />
+                )}
+                
+                {/* Gradient overlay */}
                                 <div
                                     className={`absolute inset-0 bg-gradient-to-br ${destination.gradient} opacity-60`}
                                 />

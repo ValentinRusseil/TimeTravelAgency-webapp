@@ -1,12 +1,25 @@
 "use client"
 
 import { Play, ChevronDown } from "lucide-react"
+import Image from "next/image"
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-obsidian via-navy-deep to-background" />
+      
+      {/* Background Image - Quantum/Futuristic */}
+      <div className="absolute inset-0 opacity-20">
+        <Image
+          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80"
+          alt="Quantum Background"
+          fill
+          className="object-cover"
+          priority
+          sizes="100vw"
+        />
+      </div>
       
       {/* Grid pattern overlay */}
       <div 
