@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
 import { ManifestoSection } from "@/components/manifesto-section"
+import { AboutSection } from "@/components/about-section"
 import { DestinationsGallery } from "@/components/destinations-gallery"
 import { BookingInterface } from "@/components/booking-interface"
 import { ChronosChat } from "@/components/chronos-chat"
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Navigation />
       <HeroSection />
       <ManifestoSection />
+      <AboutSection />
       <DestinationsGallery />
       <BookingInterface />
       <Footer />

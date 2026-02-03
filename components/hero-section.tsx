@@ -73,12 +73,12 @@ export function HeroSection() {
 
         {/* CTA buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="px-8 py-4 bg-cyan-glow text-obsidian font-sans font-medium rounded-full hover:shadow-[0_0_30px_oklch(0.75_0.18_195_/_0.5)] transition-all">
+          <a href="#destinations" className="px-8 py-4 bg-cyan-glow text-obsidian font-sans font-medium rounded-full hover:shadow-[0_0_30px_oklch(0.75_0.18_195_/_0.5)] transition-all">
             Explore Destinations
-          </button>
-          <button className="px-8 py-4 bg-transparent border border-foreground/30 text-foreground font-sans rounded-full hover:border-cyan-glow/50 hover:text-cyan-glow transition-all">
+          </a>
+          <a href="#about" className="px-8 py-4 bg-transparent border border-foreground/30 text-foreground font-sans rounded-full hover:border-cyan-glow/50 hover:text-cyan-glow transition-all">
             Learn More
-          </button>
+          </a>
         </div>
       </div>
 
@@ -91,7 +91,6 @@ export function HeroSection() {
       <div className="absolute top-24 left-8 text-xs font-mono text-cyan-glow/30 tracking-widest">
         <div>LAT: 40.7128° N</div>
         <div>LONG: 74.0060° W</div>
-        <div>TIME: {new Date().toLocaleTimeString()}</div>
       </div>
       
       <div className="absolute top-24 right-8 text-xs font-mono text-cyan-glow/30 tracking-widest text-right">
