@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
 import { Check, ChevronLeft, ChevronRight, Users, Calendar, Shield, Languages, Shirt } from 'lucide-react';
 
 const timelineEras = [
@@ -192,18 +192,18 @@ export function BookingInterface() {
                             <motion.button
                                 onClick={() => setTravelers(Math.max(1, travelers - 1))}
                                 className='w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-cyan-glow/50 transition-all text-foreground'
-                              whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
                                 -
                             </motion.button>
                             <span className='font-serif text-3xl text-foreground w-12 text-center'>{travelers}</span>
                             <motion.button
                                 onClick={() => setTravelers(Math.min(6, travelers + 1))}
                                 className='w-10 h-10 rounded-full border border-border flex items-center justify-center hover:border-cyan-glow/50 transition-all text-foreground'
-                              whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
                                 +
                             </motion.button>
                             <span className='text-sm text-muted-foreground ml-2'>
@@ -240,13 +240,13 @@ export function BookingInterface() {
                                         ? 'border-cyan-glow/50 bg-cyan-glow/5'
                                         : 'hover:border-cyan-glow/30'
                                 }`}
-                              initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                            >
                                 <div className='flex items-start justify-between mb-3'>
                                     <addon.icon
                                         className={`w-5 h-5 ${
@@ -288,11 +288,11 @@ export function BookingInterface() {
                                 {selectedAddOns.length} add-on{selectedAddOns.length !== 1 ? 's' : ''}
                             </p>
                         </div>
-                        <motion.button 
-              className='px-10 py-4 bg-cyan-glow text-obsidian font-sans font-medium rounded-full hover:shadow-[0_0_40px_oklch(0.75_0.18_195_/_0.5)] transition-all text-lg'
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+                        <motion.button
+                            className='px-10 py-4 bg-cyan-glow text-obsidian font-sans font-medium rounded-full hover:shadow-[0_0_40px_oklch(0.75_0.18_195_/_0.5)] transition-all text-lg'
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
                             Initialize Booking
                         </motion.button>
                     </div>
